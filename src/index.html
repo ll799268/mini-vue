@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my-vue</title>
+  <style>
+    body {
+      margin: 0
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="show-dom">
+      <p>名字：{{ name }}</p>
+      <p>年龄：{{ age }}</p>
+    </div>
+    <div class="bind">
+      <input v-model="{{ name }}" placeholder="请输入名字" />
+      <input v-model="{{ age }}" placeholder="请输入年龄" />
+    </div>
+  </div>
+</body>
+<script src="/src/index.js"></script>
+<script>
+  const app = new MyVue({
+    data () {
+      return {
+        name: 'LL',
+        age: 2
+      }
+    }
+  })
+</script>
+</html>
