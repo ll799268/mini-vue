@@ -2,43 +2,48 @@ const defaultTagRE = /\{\{(.+?)\}\}/g
 
 class MyVue {
   constructor (options) {
-    this._data = options.data()
-    this.parentNode = document.getElementById('app')
-
+    // 内部的数据使用下划线开头，只读数据使用$开头
+    this._data = options.data
+    this.$el = document.getElementById('app')
     this.init()
   }
 
   init () {
-    this.initDom()
-    this.domBind()
-    this.observer()
+    this.render()
   }
 
-  domBind () {
-    const dom = this.parentNode.getElementsByTagName('input')
-    for (let i = 0; i< dom.length; i++) {
-      const attrKey = dom[i].getAttribute('v-model').match(defaultTagRE)
-      console.log(attrKey)
+  render () {
+    this.compiler(this.$el, this._data)
+  }
+
+  compiler (template, data) {
+    const childNodes = template.childNodes
+
+    for (let i = 0; i < childNodes.length; i++) {
+      const type = childNodes[i].nodeType
+
+      if (type === 3) {
+        let value = childNodes[i].nodeValue
+        value = value.replace(defaultTagRE, (_, g) => {
+          return data[g.trim()]
+        })
+        childNodes[i].nodeValue = value
+      } else if (type === 1) {
+        this.compiler(childNodes[i], this._data)
+      }
     }
   }
 
-  initDom () {
-    const dom = this.parentNode.getElementsByTagName('input')
-    for (let i = 0; i< dom.length; i++) {
-      const attrKey = dom[i].getAttribute('v-model').match(defaultTagRE)
-    }
-  }
-
-  observer () {
-    for (const key in this._data) {
-      Object.defineProperty(this._data, key, {
-        get () {
-          return this._data[key]
-        },
-        set (newValue) {
-          return newValue
-        }
-      })
-    }
-  }
+  // observer () {
+  //   for (const key in this._data) {
+  //     Object.defineProperty(this._data, key, {
+  //       get () {
+  //         return this._data[key]
+  //       },
+  //       set (newValue) {
+  //         return newValue
+  //       }
+  //     })
+  //   }
+  // }
 }
