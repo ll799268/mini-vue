@@ -4,22 +4,22 @@ const data = {
   key2: 2,
 }
 
-observe3();
-// function observe2() {
-//   for (const key in data) {
-//     let initVal = data[key];
-//     Object.defineProperty(data, key, {
-//       get() {
-//         console.log('获取', initVal);
-//         return initVal;
-//       },
-//       set(val) {
-//         console.log('设置', val);
-//         initVal = val;
-//       }
-//     })
-//   }
-// }
+observe2();
+function observe2() {
+  for (const key in data) {
+    let initVal = data[key];
+    Object.defineProperty(data, key, {
+      get() {
+        console.log('获取', initVal);
+        return initVal;
+      },
+      set(val) {
+        console.log('设置', val);
+        initVal = val;
+      }
+    })
+  }
+}
 
 data.key1
 data.key2 = 22
