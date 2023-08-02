@@ -41,4 +41,3 @@ console.log(data)
 //   newData.key2 = 22
 //   console.log(newData);
 // }
-;
