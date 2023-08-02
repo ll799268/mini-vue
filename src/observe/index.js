@@ -21,19 +21,24 @@ observe3();
 //   }
 // }
 
-function observe3() {
-  const newData = new Proxy(data, {
-    get(oTarget, key) {
-      console.log('获取', oTarget[key]);
-      return oTarget[key];
-    },
-    set(oTarget, key, val) {
-      console.log('设置', val);
-      oTarget[key] = val;
-    }
-  });
+data.key1
+data.key2 = 22
+console.log(data)
 
-  newData.key1
-  newData.key2 = 22
-  console.log(newData);
-}
+// function observe3() {
+//   const newData = new Proxy(data, {
+//     get(oTarget, key) {
+//       console.log('获取', oTarget[key]);
+//       return oTarget[key];
+//     },
+//     set(oTarget, key, val) {
+//       console.log('设置', val);
+//       oTarget[key] = val;
+//     }
+//   });
+
+//   newData.key1
+//   newData.key2 = 22
+//   console.log(newData);
+// }
+;
