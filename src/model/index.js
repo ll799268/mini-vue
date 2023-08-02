@@ -34,16 +34,16 @@ class MyVue {
     }
   }
 
-  // observer () {
-  //   for (const key in this._data) {
-  //     Object.defineProperty(this._data, key, {
-  //       get () {
-  //         return this._data[key]
-  //       },
-  //       set (newValue) {
-  //         return newValue
-  //       }
-  //     })
-  //   }
-  // }
+  observer () {
+    for (const key in this._data) {
+      Object.defineProperty(this._data, key, {
+        get () {
+          return this._data[key]
+        },
+        set (newValue) {
+          return newValue
+        }
+      })
+    }
+  }
 }
