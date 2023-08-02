@@ -20,18 +20,22 @@
       <p>年龄：{{ age }}</p>
     </div>
     <div class="bind">
-      <input v-model="{{ name }}" placeholder="请输入名字" />
-      <input v-model="{{ age }}" placeholder="请输入年龄" />
+      <input type="text" 
+        oninput="data.name = this.value" 
+        placeholder="请输入名字" />
+      <input type="text" 
+        oninput="data.age = this.value" 
+        placeholder="请输入年龄" />
     </div>
   </div>
 </body>
 <script src="./index.js"></script>
 <script>
-  const app = new MyVue({
-    data: {
-      name: 'LL',
-      age: 2
-    }
-  })
+  const data = {
+    name: 'LL',
+    age: 2
+  }
+  const vm = new MyVue({ data })
 </script>
+
 </html>
